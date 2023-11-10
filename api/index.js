@@ -1,5 +1,8 @@
+const fs = require('fs');
+
 exports.handler = async function http (req) {
-  console.log('Begin API called')
+  console.log('Begin API called');
+  const ip = fs.readFileSync('./ip.txt');
   return {
     headers: {
       'content-type': 'application/json; charset=utf8',
@@ -7,7 +10,7 @@ exports.handler = async function http (req) {
     },
     statusCode: 200,
     body: JSON.stringify({
-      message: 'Hello from your Begin API!'
+      message: `Service from Ansible Host: ${ip}!`
     })
   }
 }
